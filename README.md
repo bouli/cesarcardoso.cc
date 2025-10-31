@@ -6,7 +6,8 @@
 I'm a __Data Engineer__, Web Developer, and __Tech Lead__ with over 17 years of experience in the technology market. Deep expertise in __SQL__, __Python__, __GCP__ and modern web technologies. Since moving to Hamburg, I've been looking for a new challenge where I can leverage my technical expertise, leadership skills, and international experience.
 
 ## links
-* [📄 resume](https://cesarcardoso.cc/resume)
+* [📄 cv](https://cesarcardoso.cc/cv)
+* [📑 lebenslauf](https://cesarcardoso.cc/de/cv)
 * [🧑🏻‍💻 linkedin](https://www.linkedin.com/in/cesardesouzacardoso/)
 * [🐈‍⬛ github](https://github.com/bouli)
 * [🐳 docker](https://hub.docker.com/u/cesarbouli)
