@@ -87,6 +87,9 @@ class ImgExtExtension(Extension):
 # Finally create an instance of the Markdown class with the new extension
 
 
+file = "qr.md"
+output_dir = "public"
+output_file = "qr.html"
 
 file = "README.md"
 output_dir = "public"

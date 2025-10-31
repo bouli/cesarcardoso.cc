@@ -1,0 +1,28 @@
+body {
+    color: #000000;
+    font: 1.0em "Helvetica", "Optima", "Times New Roman";
+
+    line-height: 1.2;
+    margin: 40px 0;
+    text-align: center;
+}
+
+h1 {
+    text-transform: uppercase;
+    text-align: center;
+
+    font-size: 200%;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    max-width: 80%;
+    max-height: 80%;
+
+      margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

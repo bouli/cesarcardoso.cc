@@ -85,14 +85,19 @@ li a {
     text-decoration: none;
     color: #000000;
 }
+
 li a:hover {
     background: #000000;
     color: #FFFFFF;
 }
 
-li img {
+a > img {
     max-width: 15%;
     margin: 2em;
+}
+
+ul + p {
+    text-align: center;
 }
 
 span span {
