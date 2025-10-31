@@ -119,3 +119,6 @@ for image in md_images.images:
         os.makedirs(f"{output_dir}/{dirname}", exist_ok=True)
 
     os.system(f"cp {image} {output_dir}/{dirname}")
+
+# TODO: workaround needed
+os.system(f"qr 'https://{title(md)}' > public/assets/qr.png")

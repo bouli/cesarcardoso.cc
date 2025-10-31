@@ -17,12 +17,17 @@ h1 {
 }
 
 img {
-    max-width: 80%;
-    max-height: 80%;
+    width: 500px;
 
-      margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media screen and (orientation: portrait) {
+    img {
+        width: 100%;
+    }
 }
