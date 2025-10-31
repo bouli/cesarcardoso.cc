@@ -13,4 +13,4 @@ I'm a __Data Engineer__, Web Developer, and __Tech Lead__ with over 17 years of 
 * [👨🏻‍🎓 coursera](https://www.coursera.org/learner/cesarcardoso)
 * [🎸 music](https://cesarbouli.com/)
 
-* ![QR Code](qr.png)
+* ![QR Code](assets/qr.png)

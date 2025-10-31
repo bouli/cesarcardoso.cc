@@ -111,4 +111,8 @@ md_images.convert(md)
 for image in md_images.images:
     if image.startswith("https://"):
         continue
-    os.system(f"cp {image} {output_dir}/")
+
+    if dirname := os.path.dirname(image):
+        os.makedirs(f"{output_dir}/{dirname}", exist_ok=True)
+
+    os.system(f"cp {image} {output_dir}/{dirname}")
