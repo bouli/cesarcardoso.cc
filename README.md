@@ -3,7 +3,7 @@
 ## Cesar Cardoso
 ### Data Engineer 📍 Hamburg, Deutschland
 
-I'm a __Data Engineer__, Web Developer, and __Tech Lead__ with over 17 years of experience in the technology market. Deep expertise in __SQL__, __Python__, __GCP__ and modern web technologies. Since moving to Hamburg, I've been looking for a new challenge where I can leverage my technical expertise, leadership skills, and international experience.
+I'm a __Data Engineer__, Web Developer, and Tech Lead with 17+ years in tech, specializing in data strategy, __ETL__, __orchestration__, and monitoring. I use tools like __GCP__ (Functions, __BigQuery__, Storage), __SQL__ (__Postgres__, MySQL), NoSQL (__MongoDB__) and __Python__ (__PySpark__, __Pandas__) to ensure data quality, integrity and accessibility.
 
 ## links
 * [📄 cv](https://cesarcardoso.cc/cv)
