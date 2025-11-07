@@ -87,38 +87,46 @@ class ImgExtExtension(Extension):
 # Finally create an instance of the Markdown class with the new extension
 
 
+def create_page(file, output_dir, output_file):
+
+    os.makedirs(output_dir, exist_ok=True)
+
+    prefix, _ = os.path.splitext(os.path.abspath(file))
+
+    with open(file, encoding="utf-8") as mdfp:
+        md = mdfp.read()
+    html = make_html(md, prefix=prefix)
+
+    with open(output_dir + "/" + output_file, "w", encoding="utf-8") as htmlfp:
+        htmlfp.write(html)
+        logging.info(f"Wrote {htmlfp.name}")
+
+    md_images = markdown.Markdown(extensions=[ImgExtExtension()])
+    md_images.convert(md)
+
+    for image in md_images.images:
+        if image.startswith("https://"):
+            continue
+
+        if dirname := os.path.dirname(image):
+            os.makedirs(f"{output_dir}/{dirname}", exist_ok=True)
+
+        os.system(f"cp {image} {output_dir}/{dirname}")
+
+    # TODO: refactor needed
+    os.makedirs(output_dir + "/assets", exist_ok=True)
+    os.system(f"qr 'https://{title(md)}' > public/assets/qr.png")
+
+
+#TODO: refactor needed
 file = "qr.md"
 output_dir = "public"
 output_file = "qr.html"
+
+create_page(file, output_dir, output_file)
 
 file = "README.md"
 output_dir = "public"
 output_file = "index.html"
 
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
-
-prefix, _ = os.path.splitext(os.path.abspath(file))
-
-with open(file, encoding="utf-8") as mdfp:
-    md = mdfp.read()
-html = make_html(md, prefix=prefix)
-
-with open(output_dir + "/" + output_file, "w", encoding="utf-8") as htmlfp:
-    htmlfp.write(html)
-    logging.info(f"Wrote {htmlfp.name}")
-
-md_images = markdown.Markdown(extensions=[ImgExtExtension()])
-md_images.convert(md)
-
-for image in md_images.images:
-    if image.startswith("https://"):
-        continue
-
-    if dirname := os.path.dirname(image):
-        os.makedirs(f"{output_dir}/{dirname}", exist_ok=True)
-
-    os.system(f"cp {image} {output_dir}/{dirname}")
-
-# TODO: workaround needed
-os.system(f"qr 'https://{title(md)}' > public/assets/qr.png")
+create_page(file, output_dir, output_file)
