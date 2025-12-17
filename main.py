@@ -6,7 +6,6 @@ from markdown.treeprocessors import Treeprocessor
 from markdown.extensions import Extension
 
 
-
 preamble = """\
 <html lang="en">
 <head>
@@ -26,6 +25,7 @@ postamble = """\
 </body>
 </html>
 """
+
 
 def title(md: str) -> str:
     """
@@ -68,21 +68,25 @@ def make_html(md: str, prefix: str = "resume") -> str:
         )
     )
 
+
 # https://stackoverflow.com/questions/29259912/how-can-i-get-a-list-of-image-urls-from-a-markdown-file-in-python
 # First create the treeprocessor
 class ImgExtractor(Treeprocessor):
     def run(self, doc):
-        "Find all images and append to markdown.images. "
+        "Find all images and append to markdown.images."
         self.md.images = []
-        for image in doc.findall('.//img'):
-            self.md.images.append(image.get('src'))
+        for image in doc.findall(".//img"):
+            self.md.images.append(image.get("src"))
+
 
 # Then tell markdown about it
+
 
 class ImgExtExtension(Extension):
     def extendMarkdown(self, md):
         img_ext = ImgExtractor(md)
-        md.treeprocessors.register(img_ext, 'img_ext', 15)
+        md.treeprocessors.register(img_ext, "img_ext", 15)
+
 
 # Finally create an instance of the Markdown class with the new extension
 
@@ -118,7 +122,7 @@ def create_page(file, output_dir, output_file):
     os.system(f"qr 'https://{title(md)}' > public/assets/qr.png")
 
 
-#TODO: refactor needed
+# TODO: refactor needed
 file = "qr.md"
 output_dir = "public"
 output_file = "qr.html"
