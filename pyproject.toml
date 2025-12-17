@@ -1,6 +1,6 @@
 [project]
 name = "cesarcardoso-cc"
-version = "0.1.0"
+version = "0.2.0"
 description = "Markdown to HTML of cesarcardoso.cc"
 readme = "README.md"
 requires-python = ">=3.11"
