@@ -10,6 +10,7 @@ I'm a __Data Engineer__, Web Developer, and Tech Lead with 17+ years in tech, sp
 * [📑 lebenslauf](https://cesarcardoso.cc/de/cv)
 * [🧑🏻‍💻 linkedin](https://www.linkedin.com/in/cesardesouzacardoso/)
 * [🐈‍⬛ github](https://github.com/bouli)
+* [🐍 pypi](https://pypi.org/user/cesarbouli/)
 * [🐳 docker](https://hub.docker.com/u/cesarbouli)
 * [👨🏻‍🎓 coursera](https://www.coursera.org/learner/cesarcardoso)
 * [🎸 music](https://cesarbouli.com/)
