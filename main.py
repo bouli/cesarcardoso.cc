@@ -3,6 +3,7 @@ import re
 import requests
 import logging
 import os
+import tempfile
 from markdown.treeprocessors import Treeprocessor
 from markdown.extensions import Extension
 
@@ -111,8 +112,15 @@ def create_page(file, output_dir, output_file):
 
     ext_img_id = 0
     for image in md_images.images:
+        if image.startswith("{qr}"):
+            #image = image[4:]
+            if dirname := os.path.dirname(image[4:]):
+                os.makedirs(f"{output_dir}/{dirname}", exist_ok=True)
 
-        if image.startswith("https://"):
+            os.system(f"qr 'https://{title(md)}' > {output_dir}/{image[4:]}")
+            file_replace(file=f"{output_dir}/{output_file}", search=image, replace=image[4:])
+
+        elif image.startswith("https://"):
             ext_img_id = ext_img_id + 1
             ext_img_dir = f"{file.split('.')[0]}"
             os.makedirs(f"{output_dir}/{ext_img_dir}", exist_ok=True)
@@ -120,22 +128,23 @@ def create_page(file, output_dir, output_file):
             local_image = str(ext_img_id)+"_"+image.split('/')[-1]
             with open(f"{output_dir}/{ext_img_dir}/{local_image}", "wb") as f:
                 f.write(r.content)
-            with open(output_dir + "/" + output_file, 'r') as f:
-                html_file = f.read()
-            with open(output_dir + "/" + output_file, '+w') as f:
-                f.write(html_file.replace(image,f"{ext_img_dir}/{local_image}"))
 
+            file_replace(file=f"{output_dir}/{output_file}", search=image, replace=f"{ext_img_dir}/{local_image}")
             continue
+        else:
+            move_image(image=image, output_dir=output_dir)
 
-        if dirname := os.path.dirname(image):
-            os.makedirs(f"{output_dir}/{dirname}", exist_ok=True)
+def file_replace(file, search, replace):
+    with open(file, 'r') as f:
+        html_file = f.read()
+    with open(file, '+w') as f:
+        f.write(html_file.replace(search,replace))
 
-        os.system(f"cp {image} {output_dir}/{dirname}")
+def move_image(image, output_dir):
+    if dirname := os.path.dirname(image):
+        os.makedirs(f"{output_dir}/{dirname}", exist_ok=True)
 
-    # TODO: refactor needed
-    os.makedirs(output_dir + "/assets", exist_ok=True)
-    os.system(f"qr 'https://{title(md)}' > public/assets/qr.png")
-
+    os.system(f"cp {image} {output_dir}/{dirname}")
 
 # TODO: refactor needed
 file = "qr.md"
