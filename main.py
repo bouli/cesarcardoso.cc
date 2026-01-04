@@ -1,5 +1,6 @@
 import markdown
 import re
+import requests
 import logging
 import os
 from markdown.treeprocessors import Treeprocessor
@@ -108,8 +109,22 @@ def create_page(file, output_dir, output_file):
     md_images = markdown.Markdown(extensions=[ImgExtExtension()])
     md_images.convert(md)
 
+    ext_img_id = 0
     for image in md_images.images:
+
         if image.startswith("https://"):
+            ext_img_id = ext_img_id + 1
+            ext_img_dir = f"{file.split('.')[0]}"
+            os.makedirs(f"{output_dir}/{ext_img_dir}", exist_ok=True)
+            r = requests.get(image)
+            local_image = str(ext_img_id)+"_"+image.split('/')[-1]
+            with open(f"{output_dir}/{ext_img_dir}/{local_image}", "wb") as f:
+                f.write(r.content)
+            with open(output_dir + "/" + output_file, 'r') as f:
+                html_file = f.read()
+            with open(output_dir + "/" + output_file, '+w') as f:
+                f.write(html_file.replace(image,f"{ext_img_dir}/{local_image}"))
+
             continue
 
         if dirname := os.path.dirname(image):
