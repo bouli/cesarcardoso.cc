@@ -1,12 +1,12 @@
-import markdown
-import re
-import requests
 import logging
 import os
+import re
 import tempfile
-from markdown.treeprocessors import Treeprocessor
-from markdown.extensions import Extension
 
+import markdown
+import requests
+from markdown.extensions import Extension
+from markdown.treeprocessors import Treeprocessor
 
 preamble = """\
 <html lang="en">
@@ -113,38 +113,47 @@ def create_page(file, output_dir, output_file):
     ext_img_id = 0
     for image in md_images.images:
         if image.startswith("{qr}"):
-            #image = image[4:]
+            # image = image[4:]
             if dirname := os.path.dirname(image[4:]):
                 os.makedirs(f"{output_dir}/{dirname}", exist_ok=True)
 
             os.system(f"qr 'https://{title(md)}' > {output_dir}/{image[4:]}")
-            file_replace(file=f"{output_dir}/{output_file}", search=image, replace=image[4:])
+            file_replace(
+                file=f"{output_dir}/{output_file}", search=image, replace=image[4:]
+            )
 
         elif image.startswith("https://"):
             ext_img_id = ext_img_id + 1
             ext_img_dir = f"{file.split('.')[0]}"
             os.makedirs(f"{output_dir}/{ext_img_dir}", exist_ok=True)
             r = requests.get(image)
-            local_image = str(ext_img_id)+"_"+image.split('/')[-1]
+            local_image = str(ext_img_id) + "_" + image.split("/")[-1]
             with open(f"{output_dir}/{ext_img_dir}/{local_image}", "wb") as f:
                 f.write(r.content)
 
-            file_replace(file=f"{output_dir}/{output_file}", search=image, replace=f"{ext_img_dir}/{local_image}")
+            file_replace(
+                file=f"{output_dir}/{output_file}",
+                search=image,
+                replace=f"{ext_img_dir}/{local_image}",
+            )
             continue
         else:
             move_image(image=image, output_dir=output_dir)
 
+
 def file_replace(file, search, replace):
-    with open(file, 'r') as f:
+    with open(file, "r") as f:
         html_file = f.read()
-    with open(file, '+w') as f:
-        f.write(html_file.replace(search,replace))
+    with open(file, "+w") as f:
+        f.write(html_file.replace(search, replace))
+
 
 def move_image(image, output_dir):
     if dirname := os.path.dirname(image):
         os.makedirs(f"{output_dir}/{dirname}", exist_ok=True)
 
     os.system(f"cp {image} {output_dir}/{dirname}")
+
 
 # TODO: refactor needed
 file = "qr.md"
