@@ -13,6 +13,7 @@ I'm a __Data Engineer__, Web Developer, and Tech Lead with 17+ years in tech, sp
 * [🐍 pypi](https://pypi.org/user/cesarbouli/)
 * [🐳 docker](https://hub.docker.com/u/cesarbouli)
 * [👨🏻‍🎓 coursera](https://www.coursera.org/learner/cesarcardoso)
+* [🏅 credly badges](https://www.credly.com/users/cesarcardoso)
 * [🎸 music](https://cesarbouli.com/)
 
 [![QR Code]({qr}/assets/qr.png)](https://cesarcardoso.cc/qr)
